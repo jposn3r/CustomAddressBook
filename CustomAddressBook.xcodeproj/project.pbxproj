@@ -15,6 +15,7 @@
 		D244199B1E295EF600D4F4B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D24419991E295EF600D4F4B9 /* LaunchScreen.storyboard */; };
 		D24419A61E295EF600D4F4B9 /* CustomAddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419A51E295EF600D4F4B9 /* CustomAddressBookTests.swift */; };
 		D24419B11E295EF600D4F4B9 /* CustomAddressBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419B01E295EF600D4F4B9 /* CustomAddressBookUITests.swift */; };
+		D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419BE1E29609C00D4F4B9 /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D24419AC1E295EF600D4F4B9 /* CustomAddressBookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomAddressBookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24419B01E295EF600D4F4B9 /* CustomAddressBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddressBookUITests.swift; sourceTree = "<group>"; };
 		D24419B21E295EF600D4F4B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D24419BE1E29609C00D4F4B9 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 			children = (
 				D244198E1E295EF600D4F4B9 /* AppDelegate.swift */,
 				D24419901E295EF600D4F4B9 /* MasterViewController.swift */,
+				D24419BE1E29609C00D4F4B9 /* AddViewController.swift */,
 				D24419921E295EF600D4F4B9 /* DetailViewController.swift */,
 				D24419941E295EF600D4F4B9 /* Main.storyboard */,
 				D24419971E295EF600D4F4B9 /* Assets.xcassets */,
@@ -196,7 +199,7 @@
 				TargetAttributes = {
 					D244198A1E295EF500D4F4B9 = {
 						CreatedOnToolsVersion = 8.2.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					D24419A01E295EF600D4F4B9 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -264,6 +267,7 @@
 			files = (
 				D24419931E295EF600D4F4B9 /* DetailViewController.swift in Sources */,
 				D24419911E295EF600D4F4B9 /* MasterViewController.swift in Sources */,
+				D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */,
 				D244198F1E295EF600D4F4B9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +418,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CustomAddressBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KH.CustomAddressBook;
@@ -426,6 +431,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CustomAddressBook/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = KH.CustomAddressBook;
