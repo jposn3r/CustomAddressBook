@@ -11,6 +11,7 @@ import UIKit
 
 class AddViewController : UIViewController {
     
+    //Checking if I set it up properly for github.
     
     override func viewDidLoad() {
         super.viewDidLoad()
