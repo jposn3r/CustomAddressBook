@@ -16,6 +16,7 @@
 		D24419A61E295EF600D4F4B9 /* CustomAddressBookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419A51E295EF600D4F4B9 /* CustomAddressBookTests.swift */; };
 		D24419B11E295EF600D4F4B9 /* CustomAddressBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419B01E295EF600D4F4B9 /* CustomAddressBookUITests.swift */; };
 		D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419BE1E29609C00D4F4B9 /* AddViewController.swift */; };
+		D24419C11E29726600D4F4B9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419C01E29726600D4F4B9 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D24419B01E295EF600D4F4B9 /* CustomAddressBookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAddressBookUITests.swift; sourceTree = "<group>"; };
 		D24419B21E295EF600D4F4B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D24419BE1E29609C00D4F4B9 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		D24419C01E29726600D4F4B9 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				D24419BE1E29609C00D4F4B9 /* AddViewController.swift */,
 				D24419921E295EF600D4F4B9 /* DetailViewController.swift */,
 				D24419941E295EF600D4F4B9 /* Main.storyboard */,
+				D24419C01E29726600D4F4B9 /* Person.swift */,
 				D24419971E295EF600D4F4B9 /* Assets.xcassets */,
 				D24419991E295EF600D4F4B9 /* LaunchScreen.storyboard */,
 				D244199C1E295EF600D4F4B9 /* Info.plist */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D24419C11E29726600D4F4B9 /* Person.swift in Sources */,
 				D24419931E295EF600D4F4B9 /* DetailViewController.swift in Sources */,
 				D24419911E295EF600D4F4B9 /* MasterViewController.swift in Sources */,
 				D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */,
@@ -513,6 +517,7 @@
 				D24419B71E295EF600D4F4B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D24419B81E295EF600D4F4B9 /* Build configuration list for PBXNativeTarget "CustomAddressBookTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +526,7 @@
 				D24419BA1E295EF600D4F4B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D24419BB1E295EF600D4F4B9 /* Build configuration list for PBXNativeTarget "CustomAddressBookUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +535,7 @@
 				D24419BD1E295EF600D4F4B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
