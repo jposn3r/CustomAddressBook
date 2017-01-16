@@ -30,6 +30,8 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        
+        self.tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,7 +51,10 @@ class MasterViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                let object = appDelegate.contacts[indexPath.row]
+                
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -65,14 +70,23 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        return appDelegate.contacts.count
+        
+        //return objects.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let object = appDelegate.contacts[indexPath.row]
+        
+        cell.textLabel!.text = object.firstName
+        
+//        let object = objects[indexPath.row] as! NSDate
+//        cell.textLabel!.text = object.description
         return cell
     }
 

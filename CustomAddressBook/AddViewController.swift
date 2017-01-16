@@ -19,15 +19,60 @@ class AddViewController : UIViewController, UITextFieldDelegate  {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var addressField: UITextField!
     
+    var person: Person?
+    
     @IBAction func addButtonPressed(sender: UIButton) {
         print("Button Pressed Foo")
         
-        if let person = Person(firstName: nameField.text!) {
-            print("Created a person: \(person.firstName)")
-            self.navigationController?.popViewController(animated: true)
-        } else {
-            print("Error creating Person")
+        if person == nil {
+            if let p = Person(firstName: nameField.text!) {
+                person = p
+                
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.contacts.append(person!)
+                
+                
+            } else {
+                let alert = UIAlertController(title: "Error", message: "Error creating contact", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            do {
+                try person!.setFirstName(fn: nameField.text!)
+                try person!.setLastName(ln: lastNameField.text!)
+                try person!.setEmail(em: emailField.text!)
+                try person!.setPhone(pn: phoneField.text!)
+                try person!.setAddress(ad: addressField.text!)
+                
+            } catch let error as PersonValidationError {
+                var errorMessage = ""
+                
+                switch(error) {
+                case .InvalidFirstName:
+                    errorMessage = "Invalid First Name"
+                case .InvalidPhone:
+                    errorMessage = "Invalid Phone Number"
+                case .InvalidEmail:
+                    errorMessage = "Invalid Email Address"
+                case .InvalidAddress:
+                    errorMessage = "Invalid Street Address"
+                }
+                
+                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                
+            } catch {
+                
+            }
         }
+        
+        self.navigationController?.popViewController(animated: true)
+
     }
     
     override func viewDidLoad() {

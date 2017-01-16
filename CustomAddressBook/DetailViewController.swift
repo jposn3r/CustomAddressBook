@@ -11,14 +11,26 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet weak var detailDescriptionLabel: UILabel!
+    
+    @IBOutlet weak var firstNameLabel: UILabel?
+    @IBOutlet weak var lastNameLabel: UILabel?
+    @IBOutlet weak var phoneButton: UIButton?
+    @IBOutlet weak var emailButton: UIButton?
+    @IBOutlet weak var addressButton: UIButton?
+    
 
 
     func configureView() {
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+            self.title = detail.firstName
+            
+            firstNameLabel?.text = detail.firstName
+            lastNameLabel?.text = detail.lastName
+            
+            phoneButton?.setTitle(detail.phone, for: .normal)
+            emailButton?.setTitle(detail.email, for: .normal)
+            addressButton?.setTitle(detail.address, for: .normal)
         }
     }
 
@@ -33,7 +45,7 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    var detailItem: NSDate? {
+    var detailItem: Person? {
         didSet {
             // Update the view.
             self.configureView()
