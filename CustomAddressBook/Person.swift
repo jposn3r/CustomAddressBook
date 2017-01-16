@@ -22,8 +22,15 @@ class Person {
     private(set) var phone : String!
     private(set) var email : String!
     
-    init(firstName fn : String) {
-        firstName = fn
+    init?(firstName fn : String) {
+        //firstName = fn
+        
+            do {
+                try setFirstName(fn: fn)
+            } catch {
+                return nil
+            }
+
     }
     
     func setFirstName(fn : String) throws {
@@ -61,23 +68,32 @@ class Person {
             let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
             
             let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+            let result = phoneTest.evaluate(with: pn)
             
+            if (!result) {
+                throw PersonValidationError.InvalidPhone
+            }
             
         }
         
         phone = pn
     }
     
-    func setEmail(em : String) throws -> Bool {
+    func setEmail(em : String) throws {
         let count = em.characters.count
         if(count > 0 ) {
             let EMAIL_REGEX = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
             
             let emailTest = NSPredicate(format:"SELF MATCHES %@", EMAIL_REGEX)
-            return emailTest.evaluate(with: em)
+            let result = emailTest.evaluate(with: em)
+            
+            if (!result) {
+                throw PersonValidationError.InvalidEmail
+            }
         }
         
         email = em
+        
     }
     
     
