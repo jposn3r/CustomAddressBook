@@ -88,6 +88,15 @@ class DetailViewController: UIViewController {
         ]
         
         let mapItem = MKMapItem(placemark:  self.mapPlacemark!)
+        
+        var mapItemName = detailItem!.firstName!
+        
+        if let ln = detailItem!.lastName {
+            mapItemName += " \(ln)"
+        }
+        
+        mapItem.name = mapItemName
+        
         mapItem.openInMaps(launchOptions: options)
     }
 
