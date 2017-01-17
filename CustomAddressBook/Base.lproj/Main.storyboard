@@ -83,14 +83,23 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfF-Nv-BbO">
                                 <rect key="frame" x="313" y="125" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="phoneButtonPressedWithSender:" destination="JEX-9P-axG" eventType="touchUpInside" id="E9G-se-hMQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wQw-BI-8XK">
                                 <rect key="frame" x="313" y="154" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="emailButtonPressedWithSender:" destination="JEX-9P-axG" eventType="touchUpInside" id="q06-s6-tqo"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BPN-Ly-aBK">
                                 <rect key="frame" x="313" y="183" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addressButtonPressedWithSender:" destination="JEX-9P-axG" eventType="touchUpInside" id="v7y-6n-NHn"/>
+                                </connections>
                             </button>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="A4Q-dw-SC8">
                                 <rect key="frame" x="16" y="229" width="343" height="206"/>

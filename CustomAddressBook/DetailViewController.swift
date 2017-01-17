@@ -21,7 +21,8 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var mapView : MKMapView?
     
-
+    var mapPlacemark : MKPlacemark?
+    
 
     func configureView() {
         // Update the user interface for the detail item.
@@ -41,6 +42,9 @@ class DetailViewController: UIViewController {
                     (placemarks, error) -> Void in
                     if let firstPlacemark = placemarks?[0] {
                         let pm = MKPlacemark(placemark: firstPlacemark)
+                        
+                        self.mapPlacemark = pm
+                        
                         self.mapView?.addAnnotation(pm)
                         let region = MKCoordinateRegionMakeWithDistance(pm.coordinate, 500, 500)
                         self.mapView?.setRegion(region, animated: false)
@@ -49,6 +53,42 @@ class DetailViewController: UIViewController {
                 
             }
         }
+    }
+    
+    @IBAction func emailButtonPressed(sender : UIButton) {
+        if let email = detailItem?.email {
+            if let url = NSURL(string: "mailto:\(email)") {
+                UIApplication.shared.open(url as URL)
+            }
+            
+        }
+    }
+    
+    @IBAction func phoneButtonPressed(sender : UIButton) {
+        if let phone = detailItem?.phone {
+            if let url = NSURL(string:"tel://\(phone)") {
+                UIApplication.shared.open(url as URL)
+            }
+            
+        }
+    }
+    
+    @IBAction func addressButtonPressed(sender : UIButton) {
+        if let placemark = self.mapPlacemark {
+            openMapForPlace(lat: placemark.coordinate.latitude, long: placemark.coordinate.longitude)
+        }
+    }
+    
+    func openMapForPlace(lat: CLLocationDegrees, long: CLLocationDegrees) {
+        let coordinates = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, 500, 500)
+        let options = [
+            MKLaunchOptionsMapCenterKey : NSValue(mkCoordinate : regionSpan.center),
+            MKLaunchOptionsMapSpanKey : NSValue(mkCoordinate : coordinates)
+        ]
+        
+        let mapItem = MKMapItem(placemark:  self.mapPlacemark!)
+        mapItem.openInMaps(launchOptions: options)
     }
 
     override func viewDidLoad() {
