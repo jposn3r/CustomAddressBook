@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class DetailViewController: UIViewController {
 
@@ -17,6 +18,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var phoneButton: UIButton?
     @IBOutlet weak var emailButton: UIButton?
     @IBOutlet weak var addressButton: UIButton?
+    
+    @IBOutlet weak var mapView : MKMapView?
     
 
 
@@ -31,6 +34,20 @@ class DetailViewController: UIViewController {
             phoneButton?.setTitle(detail.phone, for: .normal)
             emailButton?.setTitle(detail.email, for: .normal)
             addressButton?.setTitle(detail.address, for: .normal)
+            
+            if let address = detail.address {
+                let geocoder = CLGeocoder()
+                geocoder.geocodeAddressString(address) {
+                    (placemarks, error) -> Void in
+                    if let firstPlacemark = placemarks?[0] {
+                        let pm = MKPlacemark(placemark: firstPlacemark)
+                        self.mapView?.addAnnotation(pm)
+                        let region = MKCoordinateRegionMakeWithDistance(pm.coordinate, 500, 500)
+                        self.mapView?.setRegion(region, animated: false)
+                    }
+                }
+                
+            }
         }
     }
 
