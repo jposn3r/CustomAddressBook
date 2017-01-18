@@ -105,6 +105,11 @@ class DetailViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.configureView()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -117,7 +122,19 @@ class DetailViewController: UIViewController {
             self.configureView()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "editSegue") {
+            let controller = segue.destination as! AddViewController
+            controller.person = detailItem
+        }
+    }
 
+    
+    
+    
+    
+    
 
 }
 

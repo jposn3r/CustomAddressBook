@@ -139,7 +139,13 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM"/>
+                    <navigationItem key="navigationItem" title="Detail" id="mOI-FS-AaM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="tgx-FD-kXw">
+                            <connections>
+                                <segue destination="J7G-U8-kvN" kind="show" identifier="editSegue" id="5tc-ta-W7w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressButton" destination="BPN-Ly-aBK" id="104-Uz-Scd"/>
                         <outlet property="emailButton" destination="wQw-BI-8XK" id="kHh-LH-MZz"/>
@@ -370,5 +376,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="6S0-TO-JiA"/>
+        <segue reference="5tc-ta-W7w"/>
     </inferredMetricsTieBreakers>
 </document>

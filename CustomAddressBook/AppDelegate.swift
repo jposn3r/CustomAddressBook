@@ -14,10 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var window: UIWindow?
     
     var contacts = [Person]()
-
+    
+    func storeContacts() {
+        let defaults = UserDefaults.standard
+        let data = NSKeyedArchiver.archivedData(withRootObject: contacts)
+        defaults.set(data, forKey: "stored_contacts_data")
+        defaults.synchronize()
+    }
+    
+    func loadContacts() {
+        if let storedArray = UserDefaults.standard.object(forKey: "stored_contacts_data") as? NSData {
+            contacts = NSKeyedUnarchiver.unarchiveObject(with: storedArray as Data) as! [Person]
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        loadContacts()
+        
         let splitViewController = self.window!.rootViewController as! UISplitViewController
         let navigationController = splitViewController.viewControllers[splitViewController.viewControllers.count-1] as! UINavigationController
         navigationController.topViewController!.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem

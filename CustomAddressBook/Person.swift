@@ -15,7 +15,7 @@ enum PersonValidationError : Error {
     case InvalidEmail
 }
 
-class Person {
+class Person : NSObject, NSCoding {
     private(set) var firstName : String!
     private(set) var lastName : String!
     private(set) var address : String!
@@ -24,12 +24,38 @@ class Person {
     
     init?(firstName fn : String) {
         //firstName = fn
-        
+        super.init()
             do {
                 try setFirstName(fn: fn)
             } catch {
                 return nil
             }
+    }
+    
+    required init?(coder aDecoder : NSCoder) {
+        if let s = aDecoder.decodeObject(forKey: "firstName") as? String {
+            firstName = s
+        }
+        if let s = aDecoder.decodeObject(forKey: "lastName") as? String {
+            lastName = s
+        }
+        if let s = aDecoder.decodeObject(forKey: "phone") as? String {
+            phone = s
+        }
+        if let s = aDecoder.decodeObject(forKey: "email") as? String {
+            email = s
+        }
+        if let s = aDecoder.decodeObject(forKey: "address") as? String {
+            address = s
+        }
+    }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(firstName, forKey: "firstName")
+        aCoder.encode(lastName, forKey: "lastName")
+        aCoder.encode(phone, forKey: "phone")
+        aCoder.encode(email, forKey: "email")
+        aCoder.encode(address, forKey: "address")
 
     }
     

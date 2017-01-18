@@ -40,36 +40,40 @@ class AddViewController : UIViewController, UITextFieldDelegate  {
                 
                 return
             }
-            
-            do {
-                try person!.setFirstName(fn: nameField.text!)
-                try person!.setLastName(ln: lastNameField.text!)
-                try person!.setEmail(em: emailField.text!)
-                try person!.setPhone(pn: phoneField.text!)
-                try person!.setAddress(ad: addressField.text!)
-                
-            } catch let error as PersonValidationError {
-                var errorMessage = ""
-                
-                switch(error) {
-                case .InvalidFirstName:
-                    errorMessage = "Invalid First Name"
-                case .InvalidPhone:
-                    errorMessage = "Invalid Phone Number"
-                case .InvalidEmail:
-                    errorMessage = "Invalid Email Address"
-                case .InvalidAddress:
-                    errorMessage = "Invalid Street Address"
-                }
-                
-                let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
-                
-            } catch {
-                
-            }
         }
+        
+        do {
+            try person!.setFirstName(fn: nameField.text!)
+            try person!.setLastName(ln: lastNameField.text!)
+            try person!.setEmail(em: emailField.text!)
+            try person!.setPhone(pn: phoneField.text!)
+            try person!.setAddress(ad: addressField.text!)
+            
+        } catch let error as PersonValidationError {
+            var errorMessage = ""
+            
+            switch(error) {
+            case .InvalidFirstName:
+                errorMessage = "Invalid First Name"
+            case .InvalidPhone:
+                errorMessage = "Invalid Phone Number"
+            case .InvalidEmail:
+                errorMessage = "Invalid Email Address"
+            case .InvalidAddress:
+                errorMessage = "Invalid Street Address"
+            }
+            
+            let alert = UIAlertController(title: "Error", message: errorMessage, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            
+        } catch {
+            
+        }
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        appDelegate.storeContacts()
         
         self.navigationController?.popViewController(animated: true)
 
@@ -80,6 +84,14 @@ class AddViewController : UIViewController, UITextFieldDelegate  {
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         view.addGestureRecognizer(tap)
+        
+        if let person = person {
+            nameField.text = person.firstName
+            lastNameField.text = person.lastName
+            phoneField.text = person.phone
+            emailField.text = person.email
+            addressField.text = person.address
+        }
     }
     
     func dismissKeyboard() {
