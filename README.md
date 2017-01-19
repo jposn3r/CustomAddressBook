@@ -1,2 +1,2 @@
 # CustomAddressBook
-Lynda Course building a sample iOS application.
+Lynda Course building a sample iOS Contacts application.
