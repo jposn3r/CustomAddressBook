@@ -78,12 +78,27 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomContactCell
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let object = appDelegate.contacts[indexPath.row]
         
-        cell.textLabel!.text = object.firstName
+//        cell.textLabel!.text = object.firstName
+        cell.firstNameLabel.text = object.firstName
+        cell.lastNameLabel.text = object.lastName
+        
+        cell.initialsLabel.layer.cornerRadius = 10
+        cell.initialsLabel.clipsToBounds = true
+        
+        if let firstInitial = object.firstName?.characters.first {
+            if let lastInitial = object.lastName?.characters.first {
+                cell.initialsLabel.text = "\(firstInitial)\(lastInitial)"
+            } else {
+                cell.initialsLabel.text = "\(firstInitial)"
+            }
+        }
+        
+        
         
 //        let object = objects[indexPath.row] as! NSDate
 //        cell.textLabel!.text = object.description

@@ -17,6 +17,7 @@
 		D24419B11E295EF600D4F4B9 /* CustomAddressBookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419B01E295EF600D4F4B9 /* CustomAddressBookUITests.swift */; };
 		D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419BE1E29609C00D4F4B9 /* AddViewController.swift */; };
 		D24419C11E29726600D4F4B9 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24419C01E29726600D4F4B9 /* Person.swift */; };
+		D2B43C481E313F20000FD7E6 /* CustomContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B43C471E313F20000FD7E6 /* CustomContactCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D24419B21E295EF600D4F4B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D24419BE1E29609C00D4F4B9 /* AddViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		D24419C01E29726600D4F4B9 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		D2B43C471E313F20000FD7E6 /* CustomContactCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomContactCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				D244198E1E295EF600D4F4B9 /* AppDelegate.swift */,
+				D2B43C471E313F20000FD7E6 /* CustomContactCell.swift */,
 				D24419901E295EF600D4F4B9 /* MasterViewController.swift */,
 				D24419BE1E29609C00D4F4B9 /* AddViewController.swift */,
 				D24419921E295EF600D4F4B9 /* DetailViewController.swift */,
@@ -271,6 +274,7 @@
 				D24419C11E29726600D4F4B9 /* Person.swift in Sources */,
 				D24419931E295EF600D4F4B9 /* DetailViewController.swift in Sources */,
 				D24419911E295EF600D4F4B9 /* MasterViewController.swift in Sources */,
+				D2B43C481E313F20000FD7E6 /* CustomContactCell.swift in Sources */,
 				D24419BF1E29609C00D4F4B9 /* AddViewController.swift in Sources */,
 				D244198F1E295EF600D4F4B9 /* AppDelegate.swift in Sources */,
 			);

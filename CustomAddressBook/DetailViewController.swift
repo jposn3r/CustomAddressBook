@@ -84,7 +84,7 @@ class DetailViewController: UIViewController {
         let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, 500, 500)
         let options = [
             MKLaunchOptionsMapCenterKey : NSValue(mkCoordinate : regionSpan.center),
-            MKLaunchOptionsMapSpanKey : NSValue(mkCoordinate : coordinates)
+            MKLaunchOptionsMapSpanKey : NSValue(mkCoordinateSpan : regionSpan.span)
         ]
         
         let mapItem = MKMapItem(placemark:  self.mapPlacemark!)

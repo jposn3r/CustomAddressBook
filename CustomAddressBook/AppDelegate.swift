@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var contacts = [Person]()
     
     func storeContacts() {
+        contacts.sort(by: {(a: Person, b: Person) -> Bool in
+            return a.firstName < b.firstName 
+        })
+        
         let defaults = UserDefaults.standard
         let data = NSKeyedArchiver.archivedData(withRootObject: contacts)
         defaults.set(data, forKey: "stored_contacts_data")
