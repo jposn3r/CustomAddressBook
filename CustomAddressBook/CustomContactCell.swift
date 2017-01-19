@@ -14,5 +14,5 @@ class CustomContactCell : UITableViewCell {
     @IBOutlet weak var lastNameLabel : UILabel!
     @IBOutlet weak var initialsLabel : UILabel!
 
-
+    //Comment for github testing purposes.
 }
