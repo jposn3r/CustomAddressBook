@@ -8,16 +8,23 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchResultsUpdating {
 
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
 
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredContacts = [Person]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        self.definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
         self.navigationItem.rightBarButtonItem = addButton
@@ -26,7 +33,30 @@ class MasterViewController: UITableViewController {
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
     }
-
+ 
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText : searchController.searchBar.text!)
+    }
+    
+    func filterContentForSearchText(searchText : String) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        filteredContacts = appDelegate.contacts.filter { p in
+            var containsString = false
+            
+            if p.firstName!.lowercased().contains(searchText.lowercased()) {
+                containsString = true
+            }
+            if let lastName = p.lastName {
+                if lastName.lowercased().contains(searchText.lowercased()) {
+                    containsString = true
+                }
+            }
+            
+            return containsString
+        }
+        tableView.reloadData()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
         super.viewWillAppear(animated)
@@ -53,7 +83,14 @@ class MasterViewController: UITableViewController {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 
-                let object = appDelegate.contacts[indexPath.row]
+//                let object = appDelegate.contacts[indexPath.row]
+                let object : Person
+                
+                if searchController.isActive && searchController.searchBar.text != "" {
+                    object = filteredContacts[indexPath.row]
+                } else {
+                    object = appDelegate.contacts[indexPath.row]
+                }
                 
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
@@ -70,6 +107,11 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            return filteredContacts.count
+        }
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         return appDelegate.contacts.count
@@ -81,7 +123,16 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomContactCell
 
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let object = appDelegate.contacts[indexPath.row]
+//        let object = appDelegate.contacts[indexPath.row]
+        
+        let object : Person
+        
+        if searchController.isActive && searchController.searchBar.text != "" {
+            object = filteredContacts[indexPath.row]
+        } else {
+            object = appDelegate.contacts[indexPath.row]
+        }
+        
         
 //        cell.textLabel!.text = object.firstName
         cell.firstNameLabel.text = object.firstName
